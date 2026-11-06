@@ -1,0 +1,97 @@
+---
+const trips = [
+  { region: "CHINA · 中国", title: "Xinjiang", subtitle: "Mountains, lakes & unexpected turns", chinese: "新疆 · 山川湖泊与旅途中的意外惊喜", tone: "xinjiang" },
+  { region: "MALAYSIA · 马来西亚", title: "Semporna", subtitle: "Blue water, island days & diving", chinese: "仙本那 · 蓝海、海岛与潜水时光", tone: "semporna" },
+  { region: "JAPAN · 日本", title: "Hokkaido", subtitle: "A little winter wonderland", chinese: "北海道 · 冬日雪境", tone: "hokkaido" }
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="虾游记 – Fun Travel Journal. Travel, explore, discover and remember." />
+    <meta name="theme-color" content="#f7f7f4" />
+    <title>虾游记 · Shrimp Travel Journal</title>
+    <style>
+      :root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#20231f;background:#f7f7f4;font-synthesis:none;text-rendering:optimizeLegibility}
+      *{box-sizing:border-box}body{margin:0}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 48px));margin:auto}
+      header{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e6e6df}
+      .brand{font-weight:750;letter-spacing:.02em;font-size:20px}.brand small{display:block;font-size:10px;letter-spacing:.18em;color:#85877e;font-weight:600;margin-top:4px}
+      nav{display:flex;align-items:center;gap:26px;font-size:13px;color:#55594f}nav a:hover{color:#111}
+      .lang{border:1px solid #d8d9d1;border-radius:99px;padding:8px 13px;background:transparent;cursor:pointer;font:inherit;font-size:12px}
+      .hero{padding:78px 0 64px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+      .eyebrow{font-size:11px;letter-spacing:.2em;color:#777d6d;font-weight:700}.hero h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(48px,7vw,82px);line-height:.98;letter-spacing:-.055em;margin:22px 0}
+      .hero h1 span{color:#7a866d}.lead{font-size:16px;line-height:1.8;color:#65695f;max-width:490px}.tagline{font-size:14px;margin-top:22px;color:#353a31}
+      .hero-art{height:390px;border-radius:5px;overflow:hidden;position:relative;background:linear-gradient(155deg,#b8c8c1 0%,#dce0d4 42%,#859a89 43%,#536c61 100%)}
+      .sun{position:absolute;width:105px;height:105px;border-radius:50%;background:#f0e5c8;right:18%;top:15%;opacity:.9}
+      .mountain{position:absolute;bottom:0;width:0;height:0;border-left:230px solid transparent;border-right:230px solid transparent;border-bottom:260px solid #718578;left:-20px}
+      .mountain.back{left:38%;border-left-width:190px;border-right-width:190px;border-bottom-width:220px;border-bottom-color:#9cae9f}
+      .water{position:absolute;bottom:0;height:26%;width:100%;background:linear-gradient(#718d83,#526f67)}
+      .art-note{position:absolute;bottom:20px;left:22px;color:white;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+      section{padding:48px 0}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px}.section-head h2{font:400 34px Georgia,serif;margin:8px 0 0}.muted{color:#7a7d73;font-size:13px}
+      .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.trip{min-width:0}.trip-art{height:220px;border-radius:4px;position:relative;overflow:hidden}.trip-art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,30,25,.35),transparent 65%)}
+      .xinjiang{background:linear-gradient(145deg,#d5d9d0,#9aa99a 50%,#586c5f)}.semporna{background:linear-gradient(150deg,#b7d8d1,#5ca7a0 55%,#277a78)}.hokkaido{background:linear-gradient(145deg,#e8eceb,#b8c9d0 52%,#738b9b)}
+      .trip-art span{position:absolute;z-index:1;bottom:16px;left:17px;color:white;font-size:10px;letter-spacing:.16em}.trip h3{font:400 25px Georgia,serif;margin:16px 0 6px}.trip p{font-size:13px;color:#777d72;margin:0;line-height:1.6}
+      .about{background:#eeefe9;padding:38px;border-radius:4px;display:flex;justify-content:space-between;gap:30px;align-items:center}.about h2{font:400 30px Georgia,serif;margin:0 0 10px}.about p{max-width:650px;color:#62675d;line-height:1.8;font-size:14px;margin:0}
+      .socials{display:flex;gap:10px;flex-wrap:wrap}.socials a{border:1px solid #d5d8cf;border-radius:99px;padding:10px 14px;font-size:12px}
+      footer{padding:34px 0 42px;color:#85877e;font-size:11px;display:flex;justify-content:space-between;border-top:1px solid #e6e6df;margin-top:55px}
+      [data-lang="zh"] .en{display:none}[data-lang="en"] .zh{display:none}
+      @media(max-width:760px){nav{gap:12px}nav a{display:none}.hero{grid-template-columns:1fr;padding:54px 0 30px;gap:28px}.hero-art{height:280px}.cards{grid-template-columns:1fr}.trip-art{height:240px}.about{display:block;padding:26px}.socials{margin-top:22px}footer{gap:15px;flex-direction:column}}
+    </style>
+  </head>
+  <body data-lang="en">
+    <div class="wrap">
+      <header>
+        <a class="brand" href="/">虾游记 <small>SHRIMP TRAVEL JOURNAL</small></a>
+        <nav aria-label="Main navigation">
+          <a href="#journeys"><span class="en">Journeys</span><span class="zh">旅程</span></a>
+          <a href="#about"><span class="en">About</span><span class="zh">关于</span></a>
+          <a href="#social"><span class="en">Follow</span><span class="zh">关注</span></a>
+          <button class="lang" id="language-toggle" type="button">中文</button>
+        </nav>
+      </header>
+      <main>
+        <section class="hero">
+          <div>
+            <div class="eyebrow">TRAVEL · EXPLORE · DISCOVER · REMEMBER</div>
+            <h1><span class="en">A little less plan.<br/>A lot more <span>虾玩.</span></span><span class="zh">不一定有计划，<br/>但一定有故事。</span></h1>
+            <p class="lead en">A personal travel journal for curious detours, unexpected discoveries and the stories collected along the way.</p>
+            <p class="lead zh">记录每一段旅程、每一次随性出发，以及那些意想不到的风景与故事。</p>
+            <p class="tagline en">Fun Travel Journal · Travel your way.</p>
+            <p class="tagline zh">虾游记 · 随心出发，尽情瞎玩。</p>
+          </div>
+          <div class="hero-art" role="img" aria-label="Abstract mountain and lake landscape illustration">
+            <div class="sun"></div><div class="mountain"></div><div class="mountain back"></div><div class="water"></div>
+            <div class="art-note">Collect moments, not just miles</div>
+          </div>
+        </section>
+        <section id="journeys">
+          <div class="section-head"><div><div class="eyebrow">THE TRAVEL LOG</div><h2><span class="en">Recent journeys</span><span class="zh">近期旅程</span></h2></div><span class="muted"><span class="en">More stories coming soon</span><span class="zh">更多故事，陆续更新</span></span></div>
+          <div class="cards">
+            {trips.map((trip) => <article class="trip"><div class:list={["trip-art",trip.tone]}><span>{trip.region}</span></div><h3>{trip.title}</h3><p class="en">{trip.subtitle}</p><p class="zh">{trip.chinese}</p></article>)}
+          </div>
+        </section>
+        <section id="about">
+          <div class="about">
+            <div><h2><span class="en">Not every trip needs a plan.</span><span class="zh">关于虾游记</span></h2><p class="en">“虾” is a playful nod to both 虾游 (travel) and 瞎玩 (going out, exploring and having fun without overthinking it). This is a place to keep the journeys, little discoveries and memories worth remembering.</p><p class="zh">「虾」既是虾游，也是瞎玩。这里记录随性出发的旅程、沿途发现的小惊喜，以及值得珍藏的回忆。不必每一步都计划好，旅途自然会有故事。</p></div>
+          </div>
+        </section>
+        <section id="social">
+          <div class="section-head"><div><div class="eyebrow">ELSEWHERE ONLINE</div><h2><span class="en">Follow the adventures</span><span class="zh">社交平台</span></h2></div></div>
+          <p class="muted en">Social links and selected post embeds will be added here once your profile URLs are ready.</p><p class="muted zh">待提供个人主页链接后，我们会在这里加入社交平台入口及精选贴文。</p>
+          <div class="socials"><a href="#" aria-label="Instagram profile – to be configured">Instagram ↗</a><a href="#" aria-label="Facebook profile – to be configured">Facebook ↗</a><a href="#" aria-label="Xiaohongshu profile – to be configured">小红书 ↗</a></div>
+        </section>
+      </main>
+      <footer><span>© {new Date().getFullYear()} 虾游记 · Shrimp Travel Journal</span><span>Travel, Explore, Discover & Remember</span></footer>
+    </div>
+    <script>
+      const toggle = document.querySelector('#language-toggle');
+      toggle?.addEventListener('click', () => {
+        const next = document.body.dataset.lang === 'en' ? 'zh' : 'en';
+        document.body.dataset.lang = next;
+        toggle.textContent = next === 'en' ? '中文' : 'English';
+        document.documentElement.lang = next;
+      });
+    </script>
+  </body>
+</html>
