@@ -27,7 +27,7 @@ const trips = [
       .art-note{position:absolute;z-index:1;bottom:20px;left:22px;color:white;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
       section{padding:48px 0}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px}.section-head h2{font:400 34px Georgia,serif;margin:8px 0 0}.muted{color:#718894;font-size:13px}
       .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.trip{min-width:0}.trip-art{height:250px;border-radius:12px 3px 12px 3px;position:relative;overflow:hidden;background:#d9ded8}.trip-art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}.trip:hover .trip-art img{transform:scale(1.035)}.trip-art:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(20,30,25,.48));pointer-events:none}
-      .trip-art span{position:absolute;z-index:1;bottom:16px;left:17px;color:white;font-size:10px;letter-spacing:.16em}.trip h3{font:400 25px Georgia,serif;margin:16px 0 6px}.trip p{font-size:13px;color:#777d72;margin:0;line-height:1.6}
+      .trip-art span{position:absolute;z-index:1;bottom:16px;left:17px;color:white;font-size:10px;letter-spacing:.16em}.trip h3{font:400 25px Georgia,serif;margin:16px 0 6px}.trip>a:hover h3{color:#648da5}.trip p{font-size:13px;color:#777d72;margin:0;line-height:1.6}
       .about{background:linear-gradient(135deg,#e4f5fb,#cce9f4);padding:38px;border-radius:18px 4px 18px 4px;display:flex;justify-content:space-between;gap:30px;align-items:center}.about h2{font:400 30px Georgia,serif;margin:0 0 10px}.about p{max-width:720px;color:#536b78;line-height:1.8;font-size:14px;margin:0}
       .socials{display:flex;gap:10px;flex-wrap:wrap}.socials a{border:1px solid #b9d9e7;border-radius:99px;padding:10px 14px;font-size:12px;background:rgba(255,255,255,.48);transition:background .2s,border-color .2s}.socials a:hover{background:#dff2f9;border-color:#79b5cc}
       footer{padding:34px 0 42px;color:#718894;font-size:11px;display:flex;justify-content:space-between;border-top:1px solid #dce9ef;margin-top:55px}
@@ -62,7 +62,7 @@ const trips = [
         <section id="journeys">
           <div class="section-head"><div><div class="eyebrow">THE TRAVEL LOG</div><h2><span class="en">Recent journeys</span><span class="zh">近期旅程</span></h2></div><span class="muted"><span class="en">More stories coming soon</span><span class="zh">更多故事，陆续更新</span></span></div>
           <div class="cards">
-            {trips.map((trip) => <article class="trip"><div class="trip-art"><img src={trip.image} alt={trip.alt} loading="lazy" /><span>{trip.region}</span></div><h3>{trip.title}</h3><p class="en">{trip.subtitle}</p><p class="zh">{trip.chinese}</p></article>)}
+            {trips.map((trip) => <article class="trip"><a href={`/journeys/${trip.title.toLowerCase()}/`} aria-label={`Read about ${trip.title}`}><div class="trip-art"><img src={trip.image} alt={trip.alt} loading="lazy" /><span>{trip.region}</span></div><h3>{trip.title} ↗</h3></a><p class="en">{trip.subtitle}</p><p class="zh">{trip.chinese}</p></article>)}
           </div>
         </section>
         <section id="about">
