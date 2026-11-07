@@ -79,7 +79,7 @@ const { journey } = Astro.props;
       <section class="timeline">
         {journey.moments.map((moment) => <article class="moment"><h2>{moment[0]}</h2><div><p class="en">{moment[1]}</p><p class="zh">{moment[2]}</p></div></article>)}
       </section>
-      <section><div class="eyebrow">A FEW FRAMES · 旅途片段</div><div class="gallery"><img src={journey.image} alt={journey.alt} /><img src={journey.image} alt={journey.alt} /><img src={journey.image} alt={journey.alt} /></div></section>
+      
     </main>
     <footer><span>© {new Date().getFullYear()} 🦐游记 · CYan Travel Journal</span><a class="back" href="/#journeys">← Back to journeys</a></footer>
   </div>
