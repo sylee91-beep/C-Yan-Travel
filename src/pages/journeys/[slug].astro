@@ -1,0 +1,91 @@
+---
+const journeys = {
+  xinjiang: {
+    title: "Xinjiang",
+    chinese: "新疆",
+    region: "CHINA · 中国",
+    date: "24 October – 1 November 2026",
+    image: "/images/xinjiang.jpg",
+    alt: "A traveller and orange 4x4 beside the blue lake in Xinjiang",
+    intro: "Big skies, mountain lakes and plans that changed with the weather. Xinjiang was a reminder that the unexpected often becomes the best part of a journey.",
+    introZh: "辽阔的天空、雪山湖泊，还有因天气而改变的行程。新疆之旅再次提醒我，旅途中那些意料之外，往往最值得回味。",
+    moments: [
+      ["Urumqi · 乌鲁木齐", "Arrived in Urumqi as the temperature dropped and snow began to fall. A warm first taste of Xinjiang cuisine set the tone for the journey.", "抵达乌鲁木齐，气温骤降，雪花开始飘落。先用一顿热腾腾的新疆美食，为旅程揭开序幕。"],
+      ["Fuyun · 富蕴", "Tianshan Tianchi was closed because of snowfall and icy conditions, so the route changed and the road trip continued towards Fuyun.", "天山天池因降雪及路面结冰而关闭，行程临时调整，继续驱车前往富蕴。"],
+      ["Hemu · 禾木", "A wintery village, crisp air and temperatures around minus ten degrees made Hemu feel like another world.", "零下十度的禾木，空气清冽，村庄像走进了另一个世界。"],
+      ["Kanas · 喀纳斯", "Explored the Three Bays and Kanas Lake. Moon Bay became a favourite stop.", "游览喀纳斯三湾与喀纳斯湖，其中月亮湾尤其令人难忘。"],
+      ["World Devil City · 乌尔禾世界魔鬼城", "A striking landscape of wind-shaped rock formations, with the journey continuing west afterwards.", "走进乌尔禾世界魔鬼城，欣赏风蚀地貌的独特景观，随后继续向西出发。"],
+      ["Sayram Lake · 赛里木湖", "Blue water, open skies, aerial filming and a few memorable encounters with the landscape made this a highlight.", "蓝湖、晴空、航拍视角，以及沿途与大自然的相遇，让赛里木湖成为旅程亮点。"]
+    ]
+  },
+  semporna: {
+    title: "Semporna",
+    chinese: "仙本那",
+    region: "MALAYSIA · 马来西亚",
+    date: "October 2026",
+    image: "/images/semporna.jpg",
+    alt: "A scuba diver swimming beside a sea turtle over a coral reef",
+    intro: "A week shaped by the sea: island days, changing underwater visibility and unforgettable encounters beneath the surface.",
+    introZh: "一段跟着海洋节奏展开的旅程：海岛时光、水下能见度的变化，以及潜入海底后那些难忘的相遇。",
+    moments: [
+      ["Garden of Eden", "The first dive days brought a chance to settle into the water and explore Semporna's underwater world.", "从 Garden of Eden 开始，慢慢适应海中的节奏，探索仙本那的水下世界。"],
+      ["Mabul Island · 马布岛", "Dived around House Reef and Paradise 1 & 2. Visibility varied, but the dives offered plenty to observe.", "在马布岛 House Reef、Paradise 1 与 2 潜水。虽然能见度不一，海底仍有许多值得细看的风景。"],
+      ["Pandanan Island · 班南岛", "Another day out on the water, enjoying the island scenery and time underwater.", "继续出海，在岛屿风光与水下世界之间享受潜水时光。"],
+      ["Sipadan · 诗巴丹", "A long-awaited day at Sipadan, visiting South Point and Barracuda Point. The planned Drop Off dive was skipped because of an ear equalisation issue.", "终于来到诗巴丹，探访 South Point 与 Barracuda Point。由于耳压平衡问题，最后放弃了 Drop Off 潜点。"]
+    ]
+  },
+  hokkaido: {
+    title: "Hokkaido",
+    chinese: "北海道",
+    region: "JAPAN · 日本",
+    date: "20 February – 1 March 2025",
+    image: "/images/hokkaido.jpg",
+    alt: "A snowboarder on a snowy Hokkaido ski slope",
+    intro: "A winter escape built around snowboarding, northern Japan scenery and time split between Asahikawa, the slopes, Sapporo and Otaru.",
+    introZh: "一趟以滑雪板为主轴的北海道冬日之旅，在旭川、雪场、札幌与小樽之间感受日本北国风景。",
+    moments: [
+      ["Asahikawa · 旭川", "The journey began in Asahikawa, with time to explore the city and nearby winter scenery.", "从旭川展开旅程，感受城市与周边的冬日风景。"],
+      ["Yukiroro · 雪场时光", "Several days were set aside for snowboarding, making the slopes the centrepiece of the trip.", "安排了数天滑雪板行程，让雪场成为这趟旅行的主角。"],
+      ["Sapporo & Otaru · 札幌与小樽", "The final stretch brought city walks, food stops and the atmosphere of Hokkaido's best-known winter destinations.", "旅程最后来到札幌与小樽，以城市漫步、美食和冬日氛围为旅程收尾。"]
+    ]
+  }
+};
+export function getStaticPaths() {
+  return Object.keys(journeys).map((slug) => ({ params: { slug }, props: { journey: journeys[slug] } }));
+}
+const { journey } = Astro.props;
+---
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={journey.intro} />
+  <meta name="theme-color" content="#f3fbff" />
+  <title>{journey.title} · 虾游记 | CYan Travel Journal</title>
+  <style>
+    :root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#173746;background:#f3fbff;font-synthesis:none;text-rendering:optimizeLegibility}*{box-sizing:border-box}body{margin:0}.wrap{width:min(1000px,calc(100% - 40px));margin:auto}a{color:inherit;text-decoration:none}.top{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #cfe5ef}.brand{font-size:19px;font-weight:750}.brand small{display:block;font-size:10px;letter-spacing:.18em;color:#718894;margin-top:4px}.back{font-size:13px;color:#648da5}.hero{padding:45px 0 35px}.eyebrow{font-size:11px;letter-spacing:.18em;color:#648da5;font-weight:700}.hero h1{font:400 clamp(42px,7vw,68px)/1 Georgia,serif;letter-spacing:-.04em;margin:14px 0}.date{font-size:13px;color:#718894}.cover{width:100%;height:min(55vw,460px);min-height:230px;object-fit:cover;border-radius:16px 4px 16px 4px;display:block;box-shadow:0 18px 40px #27698418}.intro{font:400 22px/1.6 Georgia,serif;max-width:760px;margin:28px 0 12px;color:#304956}.zh{color:#648090;line-height:1.8}.timeline{border-top:1px solid #cfe5ef;margin:42px 0}.moment{display:grid;grid-template-columns:210px 1fr;gap:25px;padding:24px 0;border-bottom:1px solid #cfe5ef}.moment h2{font:400 23px Georgia,serif;margin:0}.moment p{font-size:14px;line-height:1.8;color:#536b78;margin:0 0 8px}.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:35px 0}.gallery img{width:100%;height:150px;object-fit:cover;border-radius:8px}footer{padding:28px 0 45px;border-top:1px solid #cfe5ef;color:#718894;font-size:12px;display:flex;justify-content:space-between}@media(max-width:650px){.moment{grid-template-columns:1fr;gap:10px}.gallery{grid-template-columns:1fr}.gallery img{height:220px}footer{gap:10px;flex-direction:column}}
+    [data-lang="zh"] .en{display:none}[data-lang="en"] .zh{display:none}
+  </style>
+</head>
+<body data-lang="en">
+  <div class="wrap">
+    <header class="top"><a class="brand" href="/">🦐游记 <small>CYAN TRAVEL JOURNAL</small></a><div><a class="back" href="/#journeys">← <span class="en">All journeys</span><span class="zh">所有旅程</span></a>　<button id="language-toggle" type="button">中文</button></div></header>
+    <main>
+      <section class="hero">
+        <div class="eyebrow">{journey.region}</div><h1>{journey.title} <span class="zh">· {journey.chinese}</span></h1><div class="date">{journey.date}</div>
+        <img class="cover" src={journey.image} alt={journey.alt} />
+        <p class="intro en">{journey.intro}</p><p class="intro zh">{journey.introZh}</p>
+      </section>
+      <section class="timeline">
+        {journey.moments.map((moment) => <article class="moment"><h2>{moment[0]}</h2><div><p class="en">{moment[1]}</p><p class="zh">{moment[2]}</p></div></article>)}
+      </section>
+      <section><div class="eyebrow">A FEW FRAMES · 旅途片段</div><div class="gallery"><img src={journey.image} alt={journey.alt} /><img src={journey.image} alt={journey.alt} /><img src={journey.image} alt={journey.alt} /></div></section>
+    </main>
+    <footer><span>© {new Date().getFullYear()} 🦐游记 · CYan Travel Journal</span><a class="back" href="/#journeys">← Back to journeys</a></footer>
+  </div>
+  <script>
+    const toggle=document.querySelector('#language-toggle');
+    toggle?.addEventListener('click',()=>{const next=document.body.dataset.lang==='en'?'zh':'en';document.body.dataset.lang=next;toggle.textContent=next==='en'?'中文':'English';document.documentElement.lang=next;});
+  </script>
+</body>
+</html>
