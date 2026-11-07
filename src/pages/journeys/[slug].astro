@@ -1,5 +1,6 @@
 ---
-const journeys = {
+export function getStaticPaths() {
+  const journeys = {
   xinjiang: {
     title: "Xinjiang",
     chinese: "新疆",
@@ -49,8 +50,7 @@ const journeys = {
       ["Sapporo & Otaru · 札幌与小樽", "The final stretch brought city walks, food stops and the atmosphere of Hokkaido's best-known winter destinations.", "旅程最后来到札幌与小樽，以城市漫步、美食和冬日氛围为旅程收尾。"]
     ]
   }
-};
-export function getStaticPaths() {
+  };
   return Object.keys(journeys).map((slug) => ({ params: { slug }, props: { journey: journeys[slug] } }));
 }
 const { journey } = Astro.props;
